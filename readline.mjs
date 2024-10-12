@@ -3,6 +3,7 @@ import { stdin, stdout } from 'node:process'
 import { up, cd, ls } from './nwd/up.mjs';
 import { validate } from './validator.mjs';
 import { cat, add , rn,  cp, mv, rm} from './files/index.mjs';
+import { oss} from './os/index.mjs';
 
 export const rl = createInterface({ input: stdin, output: stdout });
 
@@ -48,6 +49,10 @@ rl.on('line', async (value) => {
         if(value.startsWith('rm ')) {
             const [command, ...args] = value.split(' ');
             await rm(...args);
+        }
+
+        if(value.startsWith('os ')) {
+         oss(value.split(' ')[1]);
         }
     }
    
