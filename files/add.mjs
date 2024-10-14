@@ -1,15 +1,15 @@
 import { writeFile } from 'node:fs/promises';
-import { messageEmitter } from '../messageEmmiter.mjs';
+import { exec } from '../executor.mjs';
 import * as path from 'path';
 import { getCurrentDir } from '../data.mjs';
 
 export const add = async (newFileName) =>{
- try {
-    const currentDir = getCurrentDir();
-    const pathResolved = path.resolve(currentDir, newFileName);
-    await writeFile(pathResolved, '');
-    messageEmitter.emit('currentDir');
- } catch (error) {
-    messageEmitter.emit('operationFailed');
- }
+
+    await exec(
+        async ()=> {
+            const currentDir = getCurrentDir();
+            const pathResolved = path.resolve(currentDir, newFileName);
+            await writeFile(pathResolved, '');
+        }
+    )
 }

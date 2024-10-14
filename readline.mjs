@@ -4,6 +4,7 @@ import { up, cd, ls } from './nwd/up.mjs';
 import { validate } from './validator.mjs';
 import { cat, add , rn,  cp, mv, rm} from './files/index.mjs';
 import { oss} from './os/index.mjs';
+import { calculateHash} from './hash/index.mjs';
 
 export const rl = createInterface({ input: stdin, output: stdout });
 
@@ -53,6 +54,10 @@ rl.on('line', async (value) => {
 
         if(value.startsWith('os ')) {
          oss(value.split(' ')[1]);
+        }
+
+        if(value.startsWith('hash ')) {
+            calculateHash(value.split(' ')[1]);
         }
     }
    
