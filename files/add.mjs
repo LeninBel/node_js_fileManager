@@ -4,7 +4,6 @@ import * as path from 'path';
 import { getCurrentDir } from '../data.mjs';
 
 export const add = async (newFileName) =>{
-
     await exec(
         async ()=> {
             const currentDir = getCurrentDir();

@@ -4,7 +4,7 @@ import { access } from 'node:fs/promises';
 import { exec } from '../executor.mjs';
 import { createHash }  from 'node:crypto';
 import  { readFile } from 'node:fs/promises';
-import { messageEmitter } from '../messageEmitter.mjs';
+import { messageEmitter } from '../messageEmmiter.mjs';
 
 export const calculateHash = async (fileToPath) => {
     

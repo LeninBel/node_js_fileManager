@@ -6,7 +6,7 @@ export const validate = (command) => {
   const regex = /(cd|cat|add|rm|os|hash) (\S+)$/gm;
   if(regex.test(command)) return true;
 
-  const regex2 = /(rn|cp|mv) (\S+) (\S+)$/gm;;
+  const regex2 = /(rn|cp|mv|compress|decompress) (\S+) (\S+)$/gm;;
   if(regex2.test(command)) return true;
 
   messageEmitter.emit('invalidInput');

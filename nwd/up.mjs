@@ -2,30 +2,28 @@ import * as path from 'path';
 import { access, readdir, stat } from 'node:fs/promises';
 import { messageEmitter } from '../messageEmmiter.mjs';
 import { getCurrentDir, setCurrentDir } from '../data.mjs';
-
+import { exec } from '../executor.mjs';
 
 export function up() {
-    const currentDir = path.resolve(getCurrentDir(), '..');
-    setCurrentDir(currentDir);
-    messageEmitter.emit('currentDir');
+    exec(() => {
+        const currentDir = path.resolve(getCurrentDir(), '..');
+        setCurrentDir(currentDir);
+    });
 }
 
 
 export  const cd = async (dest) => {
-    try {
+
+    await exec(async () => {
         const newPath = path.resolve(getCurrentDir(), dest);
         await access(newPath);
         setCurrentDir(newPath);
-        messageEmitter.emit('currentDir');
-        
-    } catch (error) {
-        messageEmitter.emit('operationFailed');
-    }
+    });
 }
 
 export const ls = async () => {
 
-    try {
+    await exec(async () => {
         const currentDir = getCurrentDir();
         const items = await readdir(currentDir);
         const res =  items.map(async (item) => {
@@ -46,8 +44,5 @@ export const ls = async () => {
             
             
             );
-       
-    } catch (error) {
-        messageEmitter.emit('operationFailed');
-    }
+    });
 }

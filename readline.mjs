@@ -5,6 +5,7 @@ import { validate } from './validator.mjs';
 import { cat, add , rn,  cp, mv, rm} from './files/index.mjs';
 import { oss} from './os/index.mjs';
 import { calculateHash} from './hash/index.mjs';
+import { compress, decompress} from './compress/index.mjs';
 
 export const rl = createInterface({ input: stdin, output: stdout });
 
@@ -58,6 +59,16 @@ rl.on('line', async (value) => {
 
         if(value.startsWith('hash ')) {
             calculateHash(value.split(' ')[1]);
+        }
+
+        if(value.startsWith('compress ')) {
+            const [command, ...args] = value.split(' ');
+            compress(...args);
+        }
+
+        if(value.startsWith('decompress ')) {
+            const [command, ...args] = value.split(' ');
+            decompress(...args);
         }
     }
    
