@@ -5,7 +5,6 @@ export const exec = async ( cb) => {
         await cb();
         messageEmitter.emit('currentDir');
     } catch (error) {
-        console.log(error.message)
         messageEmitter.emit('operationFailed');
     }
 }
