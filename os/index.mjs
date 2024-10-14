@@ -47,7 +47,7 @@ switch (arg) {
                 const clockRate = speed > 10 ? speed / 1000 : speed;
                 return { model, clockRate };
             });
-            messageEmitter.emit('text', ()=> outputCpusData);
+            messageEmitter.emit('text',  outputCpusData);
         })
         break; 
     }

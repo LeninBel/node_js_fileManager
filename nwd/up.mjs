@@ -38,9 +38,7 @@ export const ls = async () => {
         });
 
         await Promise.all(res).then(r=> r.sort((a, b) => a.Type.localeCompare(b.Type))).then(
-            sorted => {
-                messageEmitter.emit('message', ()=> console.table(sorted));
-            }
+            console.table
             
             
             );

@@ -13,7 +13,7 @@ export const mv = async (pathToFile, pathToNewDir) => {
     const pathResolved = path.resolve(currentDir, pathToFile);
     await access(pathResolved);
     const {base}= path.parse(pathResolved);
-    const pathToCopy = path.resolve(pathToNewDir, base);
+    const pathToCopy = path.resolve(currentDir, pathToNewDir, base);
 
    const readableStream = fs.createReadStream(pathResolved);
    const writtableStream = fs.createWriteStream(pathToCopy);
